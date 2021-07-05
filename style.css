@@ -1,0 +1,33 @@
+input, button {
+    font-family: monospace;
+    
+}
+
+h3 {
+    font-family: sans-serif;
+}
+
+.main-div, {
+    padding: 20px;
+    margin: 0px auto;
+    background-color: darkgray;
+    width: 25%;
+    border: 1px solid #000;
+    outline: none;
+    width: 50%;
+    font-size: 18px;
+}
+
+.main-div button, .loggedin-div button {
+    background-color: #5d8ffc;
+    display: block;
+}
+
+.main-div button:hover, .loggedin-div button:hover {
+    background: #fff;
+    color: #5d8ffc;
+}
+
+.loggedin-div {
+    
+}
