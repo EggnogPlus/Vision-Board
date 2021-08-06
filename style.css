@@ -7,7 +7,7 @@ h3 {
     font-family: sans-serif;
 }
 
-.main-div, {
+.main-div {
     padding: 20px;
     margin: 0px auto;
     background-color: darkgray;
@@ -16,18 +16,66 @@ h3 {
     outline: none;
     width: 50%;
     font-size: 18px;
+    text-align: center
 }
 
-.main-div button, .loggedin-div button {
+.main-div button, .logout-div button {
     background-color: #5d8ffc;
-    display: block;
+    flex-wrap: wrap-reverse;
+    
 }
 
-.main-div button:hover, .loggedin-div button:hover {
+.main-div button:hover, .logout-div button:hover {
     background: #fff;
     color: #5d8ffc;
 }
 
-.loggedin-div {
+.logout-div {
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    width: 30%; 
+    padding: 8px;
+    background-color: antiquewhite;
+    margin-left: 35%;
+}
+
+h1, h2, h4 {
+    text-align: center;
+}
+
+
+
+.flex-container{
+    width: 100%;
+    text-align: center;
+    float: left;
+}
+
+.landing-text {
     
+    padding: 2px;
+    width: 100%;
+}
+
+.landing-text img {
+    max-width: 20%;
+   
+}
+
+.upload_group {
+    display: flex;
+    min-height: 40vh;
+    width: 100%;
+    height: 25%;
+    padding: 0px;
+    margin: 0px;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.userdetails {
+    text-align: center;
+    background-color: aliceblue
 }

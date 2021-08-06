@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="style.css">
+    <title>Upoad a File</title>
+</head>
+
+
+<body>
+    
+    <div class="upload_group">
+    <button onclick="createFolder()">Create Folder For Your Images</button>
+    <h4>*Please Create Your own folder if you havent already done so.<br> It's done simply by clicking the button above*</h4>
+    <progress value="0" max="100" id="uploader">0%</progress>
+    <input type="file" value="upload" id="fileButton">
+    
+    </div>
+    
+    <div class="userImages">
+    <h2>This is where Your Images in your Folder will  be displayed</h2>
+    
+    
+    
+    
+    </div>
+    
+    
+    
+    
+    
+    
+    
+         <br>
+    <div id="user_div" class="logout-div">
+        <h3>Welcome User</h3>
+        <p id="user_para">Welcome to Firebase login! You are currently logged in</p>
+        <button onclick="byebye()">Logout</button>
+        <button onclick="landing()">Back to Landing Page</button>
+    </div>
+
+
+
+    <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.7.0/firebase.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/8.7.0/firebase-analytics.js"></script>
+
+    <script>
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        var firebaseConfig = {
+            apiKey: "AIzaSyCg3FgeTo3WPmyq92NN-zVHJYFgyr1o_Sc",
+            authDomain: "fir-login-3443a.firebaseapp.com",
+            projectId: "fir-login-3443a",
+            storageBucket: "fir-login-3443a.appspot.com",
+            messagingSenderId: "609424474186",
+            appId: "1:609424474186:web:53dc376a333bcb46b626b3",
+            measurementId: "G-0C7ZY96CD9"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        firebase.analytics();
+
+        // START OF UPLOAD IMAGES
+
+        // this is to get elements
+        var uploader = document.getElementById('uploader');
+        var fileButton = document.getElementById('fileButton');
+        //document.getElementById("emailMe").innerHTML = uid;
+
+        // "listen" for file selection
+        fileButton.addEventListener('change', function(e) {
+
+            // Get the file
+            var file = e.target.files[0];
+            var user1 = document.getElementById('uid');
+            // Create a storage ref to find file again
+            var storageRef = firebase.storage().ref("images/" + user1.getuid() + "file.name");
+            
+            
+            
+            // Upload the file
+            var task = storageRef.put(file);
+
+            // Update the progress bar
+            task.on('state_changed',
+
+                function progress(snapshot) {
+                var percentage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                uploader.value = percentage;
+                },
+                function error(err) {
+                window.alert('Error');
+                },
+                function complete() {
+                    window.alert('Your File was Succesfully Uploaded!')
+                    
+                }
+
+            );
+        });
+
+    </script>
+    <script src="index.js"></script>
+</body>
+
+</html>

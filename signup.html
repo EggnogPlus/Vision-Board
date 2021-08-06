@@ -1,35 +1,25 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>FireBase Login </title>
     <link rel="stylesheet" href="style.css">
-
+    <title>Sign Up</title>
 </head>
 
 <body>
-
-    <div id="login_div" class="main-div">
-        <h3>Welcome to Baby Pinterest. Please Login in using Firebase!</h3>
-        <input type="email" placeholder="email..." id="email_field">
-        <input type="password" placeholder="password..." id="password_field">
-
-        <button onclick="login()">Login to Account</button>
-        <button onclick="sign_up_page()">Create an Account</button>
+    
+<div id="login_div" class="main-div">
+        <h3>Welcome to Baby Pinterest. Please Signup in using Firebase!</h3>
+        <input type="email" placeholder="email..." id="signup_email">
+        <input type="password" placeholder="password..." id="signup_password">
+        <button onclick="signUpWithEmailPassword()">Create an Account</button>
+        <button onclick="home()">Back to Login</button>
 
     </div>
-    <!--<div id="testing"></div> -->
-    <!--
-     <div id="user_div" class="loggedin-div">
-        <h3>Welcome User</h3>
-        <p id="user_para">Welcome to Firebase login! You are currently logged in</p>
-        <button onclick="byebye()">Logout</button>
-    </div> 
--->
     
     
-    <!-- The core Firebase JS SDK is always required and must be listed first -->
+<!-- The core Firebase JS SDK is always required and must be listed first -->
     <script src="https://www.gstatic.com/firebasejs/8.7.0/firebase.js"></script>
-
+    
     <!-- TODO: Add SDKs for Firebase products that you want to use
      https://firebase.google.com/docs/web/setup#available-libraries -->
     <script src="https://www.gstatic.com/firebasejs/8.7.0/firebase-analytics.js"></script>
