@@ -10,7 +10,6 @@
 <body>
     
     <div class="upload_group">
-    <button onclick="createFolder()">Create Folder For Your Images</button>
     <h4>*Please Create Your own folder if you havent already done so.<br> It's done simply by clicking the button above*</h4>
     <progress value="0" max="100" id="uploader">0%</progress>
     <input type="file" value="upload" id="fileButton">
@@ -78,12 +77,10 @@
 
             // Get the file
             var file = e.target.files[0];
-            var user1 = document.getElementById('uid');
+            var identity = document.getElementById('emailMe');
             // Create a storage ref to find file again
-            var storageRef = firebase.storage().ref("images/" + user1.getuid() + "file.name");
-            
-            
-            
+            var storageRef = firebase.storage().ref("images/" + identity +"/"+ file.name); //         images/uid/pic.png
+                 
             // Upload the file
             var task = storageRef.put(file);
 

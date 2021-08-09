@@ -40,16 +40,15 @@ function signUpWithEmailPassword() {
             // Signed in 
             window.alert("Signing in...")
             var user = userCredential.user;
-            document.getElementById("emailMe").innerHTML = uid;
-            createFolder(uid);
-            // ...
             window.location = 'landingpage.html';
+            document.getElementById("emailMe").value = firebase.auth().currentUser;
+            // ...
         })
         .catch((error) => {
             var errorCode = error.code;
             var errorMessage = error.message;
             // ..
-            window.alert("Error: " + errorMessage)
+            window.alert("Error69: " + errorMessage)
         });
     // [END auth_signup_password]
 }
