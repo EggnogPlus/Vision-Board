@@ -8,34 +8,29 @@
 
 
 <body>
-    
+    <div class="userdetails">
+        <h3>This is your UserID:</h3>
+        <div id="divemailMe"></div>
+    </div>
+
+
     <div class="upload_group">
-    <h4>*Please Create Your own folder if you havent already done so.<br> It's done simply by clicking the button above*</h4>
-    <progress value="0" max="100" id="uploader">0%</progress>
-    <input type="file" value="upload" id="fileButton">
-    
+
+        <progress value="0" max="100" id="uploader">0%</progress>
+        <input type="file" value="upload" id="fileButton">
+
     </div>
-    
-    <div class="userImages">
-    <h2>This is where Your Images in your Folder will  be displayed</h2>
-    
-    
-    
-    
+
+    <div class="listRef">
+        <h2>This is where Your Images in your Folder will be displayed</h2>
     </div>
-    
-    
-    
-    
-    
-    
-    
-         <br>
+
+    <br>
     <div id="user_div" class="logout-div">
-        <h3>Welcome User</h3>
-        <p id="user_para">Welcome to Firebase login! You are currently logged in</p>
+        <h4>Welcome to Pinry User</h4>
+        <p id="user_para">Welcome! You are currently logged in</p>
         <button onclick="byebye()">Logout</button>
-        <button onclick="landing()">Back to Landing Page</button>
+        <button onclick="landing()">Back</button>
     </div>
 
 
@@ -70,17 +65,22 @@
         // this is to get elements
         var uploader = document.getElementById('uploader');
         var fileButton = document.getElementById('fileButton');
+        var emailMe = document.getElementById('uid')
+
         //document.getElementById("emailMe").innerHTML = uid;
 
         // "listen" for file selection
         fileButton.addEventListener('change', function(e) {
-
+            //emailMe which has the users id code is identifying as a div element which we need to turn back into its original form
+            var identity = divemailMe.innerHTML;
             // Get the file
             var file = e.target.files[0];
-            var identity = document.getElementById('emailMe');
+            //var identity = document.getElementById('uid');
             // Create a storage ref to find file again
-            var storageRef = firebase.storage().ref("images/" + identity +"/"+ file.name); //         images/uid/pic.png
-                 
+
+            //need to set emailMe as something before using it here IMPORTANT!!
+            var storageRef = firebase.storage().ref("images/" + identity + "/" + file.name); //         images/uid/pic.png
+
             // Upload the file
             var task = storageRef.put(file);
 
@@ -88,22 +88,43 @@
             task.on('state_changed',
 
                 function progress(snapshot) {
-                var percentage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-                uploader.value = percentage;
+                    var percentage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                    uploader.value = percentage;
                 },
                 function error(err) {
-                window.alert('Error');
+                    window.alert('Error');
                 },
                 function complete() {
                     window.alert('Your File was Succesfully Uploaded!')
-                    
+
                 }
 
             );
+            
+            //START OF DISPLAY IMAGES
+        
+            //i think this just lists all images, now i need to display them or atleast have a place for the list to freakin go            
+            
+        // Create a reference under which you want to list
+        var listRef = storageRef.child('images/' + identity + "/");
+
+        // Find all the prefixes and items.
+        listRef.listAll()
+            .then((res) => {
+                res.prefixes.forEach((folderRef) => {
+                    // All the prefixes under listRef.
+                    // You may call listAll() recursively on them.
+                });
+                res.items.forEach((itemRef) => {
+                    // All the items under listRef.
+                });
+            }).catch((error) => {
+                // Uh-oh, an error occurred!
+                window.alert('Error420 hehe')
+            });
         });
+        // END OF UPLOAD IMAGES
 
     </script>
     <script src="index.js"></script>
-</body>
-
-</html>
+</body></html>

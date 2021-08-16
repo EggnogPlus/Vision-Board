@@ -28,6 +28,9 @@ function home() {
 function sign_up_page() {
     window.location = 'signup.html';
 }
+function upload_page() {
+    window.location = 'tester.html';
+}
 
 function signUpWithEmailPassword() {
 
@@ -41,7 +44,8 @@ function signUpWithEmailPassword() {
             window.alert("Signing in...")
             var user = userCredential.user;
             window.location = 'landingpage.html';
-            document.getElementById("emailMe").value = firebase.auth().currentUser;
+            //document.getElementById("divemailMe").innerHTML = firebase.auth().currentUser;
+        //document.getElementById("emailMe").innerHTML = firebase.auth().currentUser;
             // ...
         })
         .catch((error) => {
@@ -87,7 +91,10 @@ firebase.auth().onAuthStateChanged((user) => {
         // https://firebase.google.com/docs/reference/js/firebase.User
         var uid = user.uid;
         var user = firebase.auth().currentUser;
-        document.getElementById("emailMe").innerHTML = uid;
+        document.getElementById("divemailMe").innerHTML = user.uid;
+        //document.getElementById("emailMe").innerHTML = user.uid;
+        
+        
         //createFolder(user);
 
     } else {

@@ -2,6 +2,9 @@ input, button {
     font-family: monospace;
     
 }
+body {
+    background: #344966
+}
 
 h3 {
     font-family: sans-serif;
@@ -10,22 +13,61 @@ h3 {
 .main-div {
     padding: 20px;
     margin: 0px auto;
-    background-color: darkgray;
+    background-color: #433e3f;
     width: 25%;
     border: 1px solid #000;
     outline: none;
     width: 50%;
     font-size: 18px;
-    text-align: center
+    text-align: center;
 }
 
-.main-div button, .logout-div button {
-    background-color: #5d8ffc;
+.main-div h2 {
+    color: lime;
+}
+.welcome {
+    color: orange;
+}
+
+.logincss-div {
+    
+    padding: 20px;
+    margin: 0px auto;
+    /*background-color: #f5853f;*/
+    background-color: #f5853f;
+    border: 1px solid #000;
+    outline: none;
+    width: 50%;
+    font-size: 18px;
+    text-align: center;
+}
+.logincss-div h3 {
+    color: azure;
+}
+
+.loogo {
+    text-align: left;
+    background-color: #344966;
+    height: 105px;
+    padding: 10px
+}
+.loogo img {
+    height: 105px;
+    width: auto;
+    flex-wrap: wrap;
+}
+
+.main-div button, .logout-div button, .logincss-div button {
+    background-color: #d7dedc;
     flex-wrap: wrap-reverse;
     
 }
 
-.main-div button:hover, .logout-div button:hover {
+#user_para {
+    font-size: 13px;
+}
+
+.main-div button:hover, .logout-div button:hover, logincss-div button:hover {
     background: #fff;
     color: #5d8ffc;
 }
@@ -34,33 +76,33 @@ h3 {
     text-align: center;
     position: fixed;
     bottom: 0;
-    width: 30%; 
-    padding: 8px;
+    width: 20%; 
+    padding: 0px;
     background-color: antiquewhite;
-    margin-left: 35%;
+    margin-left: 40%;
 }
 
 h1, h2, h4 {
     text-align: center;
 }
 
-
-
-.flex-container{
-    width: 100%;
+.sampleimages {
     text-align: center;
-    float: left;
 }
-
 .landing-text {
     
     padding: 2px;
     width: 100%;
+
+}
+
+.landing-text h3 {
+    color: orange;
 }
 
 .landing-text img {
-    max-width: 20%;
-   
+    max-width: 24.8%;
+    max-height: 200px;
 }
 
 .upload_group {
@@ -77,5 +119,16 @@ h1, h2, h4 {
 
 .userdetails {
     text-align: center;
-    background-color: aliceblue
+    background-color: #433e3f;
+    margin: 15px;
+    padding: 0px;
+    color: orange;
+}
+
+.listRef h2 {
+    color: orange;
+}
+.mainlink {
+    ext-decoration: none;
+    color: orange;
 }
