@@ -21,7 +21,8 @@
 
     </div>
 
-    <div class="listRef">
+    <div class="visionboard" id="vision">
+        <button onclick="listAll()">List all images</button>
         <h2>This is where Your Images in your Folder will be displayed</h2>
     </div>
 
@@ -66,65 +67,74 @@
         var uploader = document.getElementById('uploader');
         var fileButton = document.getElementById('fileButton');
         var emailMe = document.getElementById('uid')
+        
+         function listAll() {
+                        const storageRef = firebase.storage().ref();
 
+                        // [START storage_list_all]
+                        // Create a reference under which you want to list
+                        var listRef = storageRef.child('images/' + identity + '/');
+
+
+                        // Find all the prefixes and items.
+                        listRef.listAll()
+                            .then((res) => {
+                                res.prefixes.forEach((folderRef) => {
+                                    // All the prefixes under listRef.
+                                    // You may call listAll() recursively on them.
+                                    var listvariable = document.getElementById('vision');
+                                    listvariable.innerHTML = root.child('images/' + identity + "/").listAll();
+                                });
+                                res.items.forEach((itemRef) => {
+                                    // All the items under listRef.
+                                });
+                            }).catch((error) => {
+                                // Uh-oh, an error occurred!
+                            });
+                        // [END storage_list_all]
+                    }
+        
         //document.getElementById("emailMe").innerHTML = uid;
-
+var identity = divemailMe.innerHTML;
         // "listen" for file selection
         fileButton.addEventListener('change', function(e) {
-            //emailMe which has the users id code is identifying as a div element which we need to turn back into its original form
-            var identity = divemailMe.innerHTML;
-            // Get the file
-            var file = e.target.files[0];
-            //var identity = document.getElementById('uid');
-            // Create a storage ref to find file again
+                    //emailMe which has the users id code is identifying as a div element which we need to turn back into its original form
+                    
+                    // Get the file
+                    var file = e.target.files[0];
+                    //var identity = document.getElementById('uid');
+                    // Create a storage ref to find file again
 
-            //need to set emailMe as something before using it here IMPORTANT!!
-            var storageRef = firebase.storage().ref("images/" + identity + "/" + file.name); //         images/uid/pic.png
+                    //need to set emailMe as something before using it here IMPORTANT!!
+                    var storageRef = firebase.storage().ref("images/" + identity + "/" + file.name); //         images/uid/pic.png
 
-            // Upload the file
-            var task = storageRef.put(file);
+                    // Upload the file
+                    var task = storageRef.put(file);
 
-            // Update the progress bar
-            task.on('state_changed',
+                    // Update the progress bar
+                    task.on('state_changed',
 
-                function progress(snapshot) {
-                    var percentage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-                    uploader.value = percentage;
-                },
-                function error(err) {
-                    window.alert('Error');
-                },
-                function complete() {
-                    window.alert('Your File was Succesfully Uploaded!')
+                        function progress(snapshot) {
+                            var percentage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                            uploader.value = percentage;
+                        },
+                        function error(err) {
+                            window.alert('Error');
+                        },
+                        function complete() {
+                            window.alert('Your File was Succesfully Uploaded!')
 
-                }
+                        }
 
-            );
-            
-            //START OF DISPLAY IMAGES
-        
-            //i think this just lists all images, now i need to display them or atleast have a place for the list to freakin go            
-            
-        // Create a reference under which you want to list
-        var listRef = storageRef.child('images/' + identity + "/");
+                    );
 
-        // Find all the prefixes and items.
-        listRef.listAll()
-            .then((res) => {
-                res.prefixes.forEach((folderRef) => {
-                    // All the prefixes under listRef.
-                    // You may call listAll() recursively on them.
-                });
-                res.items.forEach((itemRef) => {
-                    // All the items under listRef.
-                });
-            }).catch((error) => {
-                // Uh-oh, an error occurred!
-                window.alert('Error420 hehe')
-            });
-        });
-        // END OF UPLOAD IMAGES
+        })
+                    //START OF DISPLAY IMAGES
 
+                    //i think this just lists all images, now i need to display them or atleast have a place for the list to freakin go            
+                   
+
+                    
     </script>
     <script src="index.js"></script>
 </body></html>

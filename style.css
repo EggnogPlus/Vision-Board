@@ -75,11 +75,11 @@ h3 {
 .logout-div {
     text-align: center;
     position: fixed;
-    bottom: 0;
-    width: 20%; 
+    top: 0;
+    width: 200px;
     padding: 0px;
-    background-color: antiquewhite;
-    margin-left: 40%;
+    background-color: #d7dedc;
+    //margin-left: 40%;
 }
 
 h1, h2, h4 {
@@ -100,9 +100,10 @@ h1, h2, h4 {
     color: orange;
 }
 
-.landing-text img {
-    max-width: 24.8%;
+.landing-text img, visionboard img {
+    /max-width: 24.8%;
     max-height: 200px;
+    display: inline-flex;
 }
 
 .upload_group {

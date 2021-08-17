@@ -100,11 +100,12 @@ firebase.auth().onAuthStateChanged((user) => {
     } else {
         // User is signed out
         // ...
-        window.alert("you are signed out...");
+        console.log("User logged out")
         //document.getElementById("user_div").style.display = "none";
         //document.getElementById("login_div").style.display = "block";
     }
 });
+
 
 /*
 function uploadRef() {
