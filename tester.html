@@ -22,9 +22,11 @@
     </div>
 
     <div class="visionboard" id="vision">
-        <button onclick="listAll()">List all images</button>
+        <button onclick="displayVisionBoard()">List all images</button>
         <h2>This is where Your Images in your Folder will be displayed</h2>
+        <div class="testryclass" id="testry"></div>
     </div>
+
 
     <br>
     <div id="user_div" class="logout-div">
@@ -34,9 +36,6 @@
         <button onclick="landing()">Back</button>
     </div>
 
-
-
-    <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
 
     <!-- The core Firebase JS SDK is always required and must be listed first -->
     <script src="https://www.gstatic.com/firebasejs/8.7.0/firebase.js"></script>
@@ -67,39 +66,18 @@
         var uploader = document.getElementById('uploader');
         var fileButton = document.getElementById('fileButton');
         var emailMe = document.getElementById('uid')
-
-        function listAll() {
-            const storageRef = firebase.storage().ref();
-            var identity = divemailMe.innerHTML;
-
-            // [START storage_list_all]
+        // [START storage_list_all]
+       //document.getElementById("emailMe").innerHTML = uid;
+        //var identity = divemailMe.innerHTML;
+        //console.log("divemailMe.innerHTML is: " + identity.toString());
+        //var root = document.querySelector(' ');
+        const storageRef = firebase.storage().ref();
+        console.log("storageRef is "+ storageRef.toString());
+        
             // Create a reference under which you want to list
-            var listvariable = document.getElementById('vision');
-            var listRef = storageRef.child('images/' + identity + '/');
+       
 
-             
-             listvariable.innerHTML = root.child('images/' + identity + "/").listAll();
-            window.alert('456 working (got passed root.child variable)')
-            // Find all the prefixes and items.
-            listRef.listAll()
-                .then((res) => {
-                    res.prefixes.forEach((folderRef) => {
-                        // All the prefixes under listRef.
-                        // You may call listAll() recursively on them.
-
-                    });
-                    res.items.forEach((itemRef) => {
-                        // All the items under listRef.
-
-                    });
-                }).catch((error) => {
-                    // Uh-oh, an error occurred!
-                });
-            // [END storage_list_all]
-        }
-
-        //document.getElementById("emailMe").innerHTML = uid;
-        var identity = divemailMe.innerHTML;
+       
         // "listen" for file selection
         fileButton.addEventListener('change', function(e) {
             //emailMe which has the users id code is identifying as a div element which we need to turn back into its original form
@@ -109,6 +87,7 @@
             //var identity = document.getElementById('uid');
             // Create a storage ref to find file again (this needs to stay within the listen function to work FOR SOME F***** REASON)
             var identity = divemailMe.innerHTML;
+            console.log("after event listener divemailMe is " + identity.toString());
             //need to set emailMe as something before using it here IMPORTANT!!
             var storageRef = firebase.storage().ref("images/" + identity + "/" + file.name); //         images/uid/pic.png
 
@@ -131,6 +110,7 @@
                 }
 
             );
+
 
         })
         //START OF DISPLAY IMAGES

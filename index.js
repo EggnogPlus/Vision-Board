@@ -6,10 +6,11 @@ function login() {
 
     firebase.auth().signInWithEmailAndPassword(userEmail, userPassword).then((userCredential) => {
             // Signed in
-            window.alert("Signing in...")
+            window.alert("Signing in...");
+            //setTimeout(function(){ alert("Signing in..."); }, 3000);
             var user = userCredential.user;
             // ...
-            window.location = 'landingpage.html';
+            window.location = 'tester.html';
         })
         .catch((error) => {
             var errorCode = error.code;
@@ -18,6 +19,7 @@ function login() {
         });
 
 }
+
 function landing() {
     window.location = 'landingpage.html';
 }
@@ -107,6 +109,38 @@ firebase.auth().onAuthStateChanged((user) => {
 });
 
 
+function displayVisionBoard() {
+  var listvariable = document.getElementById('testry');
+  //var identity = document.getElementById('divemailMe').value;
+  var identity = firebase.auth().currentUser.uid;
+  console.log("identity is "+ identity.toString());
+  var listRef = storageRef.child('/images/' + identity + '/');
+  console.log ("storageRef.child or listRef is : " + listRef.toString());
+        
+        //$('#testry').html('');
+  var i = 0;
+  listRef.listAll().then(function(result) {
+      result.items.forEach(function(imageRef){
+        console.log("Image reference: " + imageRef.toString());
+
+        i++;
+        displayImage(i, imageRef, listvariable);
+      });
+  });
+
+
+}//end display vision board
+function displayImage(row, images, location){
+  images.getDownloadURL().then(function(url) {
+    console.log(url);
+
+    let new_html = '';
+    new_html += '<br>';
+    new_html += '<img src="' + url + '"width = "300px" style="float:left">';
+    new_html += '<br>';
+    location.innerHTML += new_html;
+  })
+}
 /*
 function uploadRef() {
     // [START storage_upload_ref]
