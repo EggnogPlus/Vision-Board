@@ -60,7 +60,11 @@ h3 {
 .main-div button, .logout-div button, .logincss-div button {
     background-color: #d7dedc;
     flex-wrap: wrap-reverse;
-    
+}
+
+.testryclass img {
+    padding: 3px;
+    display: inline-flex;
 }
 
 #user_para {
@@ -75,11 +79,11 @@ h3 {
 .logout-div {
     text-align: center;
     position: fixed;
-    bottom: 0;
-    width: 20%; 
+    top: 0;
+    width: 200px;
     padding: 0px;
-    background-color: antiquewhite;
-    margin-left: 40%;
+    background-color: #d7dedc;
+    //margin-left: 40%;
 }
 
 h1, h2, h4 {
@@ -100,9 +104,19 @@ h1, h2, h4 {
     color: orange;
 }
 
-.landing-text img {
-    max-width: 24.8%;
+.landing-text img, visionboard img {
+    /max-width: 24.8%;
     max-height: 200px;
+    display: inline-flex;
+}
+
+.visionboard{
+    text-align: center;
+    text-decoration: underline;
+}
+.progressbar {
+    height: 10px;
+    width: 40%;
 }
 
 .upload_group {

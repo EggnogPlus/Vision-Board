@@ -16,14 +16,17 @@
 
     <div class="upload_group">
 
-        <progress value="0" max="100" id="uploader">0%</progress>
+        <progress value="0" max="100" id="uploader" class="progressbar">0%</progress>
         <input type="file" value="upload" id="fileButton">
 
     </div>
 
-    <div class="listRef">
+    <div class="visionboard" id="vision">
+        <button onclick="displayVisionBoard()">List all images</button>
         <h2>This is where Your Images in your Folder will be displayed</h2>
+        <div class="testryclass" id="testry"></div>
     </div>
+
 
     <br>
     <div id="user_div" class="logout-div">
@@ -33,9 +36,6 @@
         <button onclick="landing()">Back</button>
     </div>
 
-
-
-    <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
 
     <!-- The core Firebase JS SDK is always required and must be listed first -->
     <script src="https://www.gstatic.com/firebasejs/8.7.0/firebase.js"></script>
@@ -66,18 +66,28 @@
         var uploader = document.getElementById('uploader');
         var fileButton = document.getElementById('fileButton');
         var emailMe = document.getElementById('uid')
+        // [START storage_list_all]
+       //document.getElementById("emailMe").innerHTML = uid;
+        //var identity = divemailMe.innerHTML;
+        //console.log("divemailMe.innerHTML is: " + identity.toString());
+        //var root = document.querySelector(' ');
+        const storageRef = firebase.storage().ref();
+        console.log("storageRef is "+ storageRef.toString());
+        
+            // Create a reference under which you want to list
+       
 
-        //document.getElementById("emailMe").innerHTML = uid;
-
+       
         // "listen" for file selection
         fileButton.addEventListener('change', function(e) {
             //emailMe which has the users id code is identifying as a div element which we need to turn back into its original form
-            var identity = divemailMe.innerHTML;
+
             // Get the file
             var file = e.target.files[0];
             //var identity = document.getElementById('uid');
-            // Create a storage ref to find file again
-
+            // Create a storage ref to find file again (this needs to stay within the listen function to work FOR SOME F***** REASON)
+            var identity = divemailMe.innerHTML;
+            console.log("after event listener divemailMe is " + identity.toString());
             //need to set emailMe as something before using it here IMPORTANT!!
             var storageRef = firebase.storage().ref("images/" + identity + "/" + file.name); //         images/uid/pic.png
 
@@ -100,31 +110,15 @@
                 }
 
             );
-            
-            //START OF DISPLAY IMAGES
-        
-            //i think this just lists all images, now i need to display them or atleast have a place for the list to freakin go            
-            
-        // Create a reference under which you want to list
-        var listRef = storageRef.child('images/' + identity + "/");
 
-        // Find all the prefixes and items.
-        listRef.listAll()
-            .then((res) => {
-                res.prefixes.forEach((folderRef) => {
-                    // All the prefixes under listRef.
-                    // You may call listAll() recursively on them.
-                });
-                res.items.forEach((itemRef) => {
-                    // All the items under listRef.
-                });
-            }).catch((error) => {
-                // Uh-oh, an error occurred!
-                window.alert('Error420 hehe')
-            });
-        });
-        // END OF UPLOAD IMAGES
+
+        })
+        //START OF DISPLAY IMAGES
+
+        //i think this just lists all images, now i need to display them or atleast have a place for the list to freakin go            
 
     </script>
     <script src="index.js"></script>
-</body></html>
+</body>
+
+</html>

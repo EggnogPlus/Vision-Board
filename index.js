@@ -6,7 +6,8 @@ function login() {
 
     firebase.auth().signInWithEmailAndPassword(userEmail, userPassword).then((userCredential) => {
             // Signed in
-            window.alert("Signing in...")
+            window.alert("Signing in...");
+            //setTimeout(function(){ alert("Signing in..."); }, 3000);
             var user = userCredential.user;
             // ...
             window.location = 'landingpage.html';
@@ -18,6 +19,7 @@ function login() {
         });
 
 }
+
 function landing() {
     window.location = 'landingpage.html';
 }
@@ -100,12 +102,46 @@ firebase.auth().onAuthStateChanged((user) => {
     } else {
         // User is signed out
         // ...
-        window.alert("you are signed out...");
+        console.log("User logged out")
         //document.getElementById("user_div").style.display = "none";
         //document.getElementById("login_div").style.display = "block";
     }
 });
 
+
+function displayVisionBoard() {
+  var listvariable = document.getElementById('testry');
+  //var identity = document.getElementById('divemailMe').value;
+  var identity = firebase.auth().currentUser.uid;
+  console.log("identity is "+ identity.toString());
+  var listRef = storageRef.child('/images/' + identity + '/');
+  console.log ("storageRef.child or listRef is : " + listRef.toString());
+        
+        //$('#testry').html('');
+  var i = 0;
+  listRef.listAll().then(function(result) {
+      result.items.forEach(function(imageRef){
+        console.log("Image reference: " + imageRef.toString());
+
+        i++;
+        displayImage(i, imageRef, listvariable);
+      });
+  });
+
+
+}//end display vision board
+function displayImage(row, images, location){
+  images.getDownloadURL().then(function(url) {
+    console.log(url);
+
+    let new_html = '';
+    //you dont need these breaks, it just makes everything have the weird stair effect
+    //new_html += '<br>';
+    new_html += '<img src="' + url + '"height = "300px" style="float:left">';
+    //new_html += '<br>';
+    location.innerHTML += new_html;
+  })
+}
 /*
 function uploadRef() {
     // [START storage_upload_ref]
