@@ -75,6 +75,12 @@ function byebye() {
 
 
 }
+function folderfunction() {
+    //window.alert("Folder Selected!");
+    var selectedfolder = document.getElementById("folder_options").value;
+    //document.getElementById("folder_options").innerHTML = selectedfolder;
+    window.alert("Folder Selected: " + selectedfolder) //check if correct value is recieved
+}
 
 
 function createFolder(varspecial) {
@@ -137,7 +143,7 @@ function displayImage(row, images, location){
     let new_html = '';
     //you dont need these breaks, it just makes everything have the weird stair effect
     //new_html += '<br>';
-    new_html += '<img src="' + url + '"height = "300px" style="float:left">';
+    new_html += '<img src="' + url + '"height = "300px" style="float: center">';
     //new_html += '<br>';
     location.innerHTML += new_html;
   })

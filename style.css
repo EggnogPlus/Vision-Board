@@ -146,3 +146,8 @@ h1, h2, h4 {
     ext-decoration: none;
     color: orange;
 }
+.folder_select {
+    text-align: center;
+    background-color: #433e3f;
+    color: aliceblue;
+}

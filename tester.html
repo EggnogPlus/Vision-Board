@@ -14,14 +14,35 @@
     </div>
 
 
+
     <div class="upload_group">
 
         <progress value="0" max="100" id="uploader" class="progressbar">0%</progress>
         <input type="file" value="upload" id="fileButton">
 
     </div>
+<!DOCTYPE html>
+<html>
+<body>
+
+
+<div class="folder_select">
+  <label for="cars">Choose a Folder for your Images:</label>
+  <select name="folders" id="folder_options">
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+  </select>
+  
+  <input onclick="folderfunction()" type="submit" value="Select This Folder">
+    </div>
+
+</body>
+</html>
 
     <div class="visionboard" id="vision">
+        <br>
         <button onclick="displayVisionBoard()">List all images</button>
         <h2>This is where Your Images in your Folder will be displayed</h2>
         <div class="testryclass" id="testry"></div>
@@ -85,7 +106,7 @@
             // Get the file
             var file = e.target.files[0];
             //var identity = document.getElementById('uid');
-            // Create a storage ref to find file again (this needs to stay within the listen function to work FOR SOME F***** REASON)
+            // Create a storage ref to find file again (this needs to stay within the listen function to work FOR SOME REASON)
             var identity = divemailMe.innerHTML;
             console.log("after event listener divemailMe is " + identity.toString());
             //need to set emailMe as something before using it here IMPORTANT!!
