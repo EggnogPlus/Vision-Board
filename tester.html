@@ -14,14 +14,31 @@
     </div>
 
 
+
     <div class="upload_group">
 
-        <progress value="0" max="100" id="uploader">0%</progress>
+        <progress value="0" max="100" id="uploader" class="progressbar">0%</progress>
         <input type="file" value="upload" id="fileButton">
 
     </div>
 
+
+    <div class="folder_select">
+        <label for="cars">Choose a Folder for your Images:</label>
+        <select name="folders" id="folder_options">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+        </select>
+
+        <input onclick="folderfunction()" type="submit" value="Select This Folder">
+    </div>
+
+
+
     <div class="visionboard" id="vision">
+        <br>
         <button onclick="displayVisionBoard()">List all images</button>
         <h2>This is where Your Images in your Folder will be displayed</h2>
         <div class="testryclass" id="testry"></div>
@@ -67,17 +84,17 @@
         var fileButton = document.getElementById('fileButton');
         var emailMe = document.getElementById('uid')
         // [START storage_list_all]
-       //document.getElementById("emailMe").innerHTML = uid;
+        //document.getElementById("emailMe").innerHTML = uid;
         //var identity = divemailMe.innerHTML;
         //console.log("divemailMe.innerHTML is: " + identity.toString());
         //var root = document.querySelector(' ');
         const storageRef = firebase.storage().ref();
-        console.log("storageRef is "+ storageRef.toString());
-        
-            // Create a reference under which you want to list
-       
+        console.log("storageRef is " + storageRef.toString());
 
-       
+        // Create a reference under which you want to list
+
+
+
         // "listen" for file selection
         fileButton.addEventListener('change', function(e) {
             //emailMe which has the users id code is identifying as a div element which we need to turn back into its original form
@@ -85,11 +102,12 @@
             // Get the file
             var file = e.target.files[0];
             //var identity = document.getElementById('uid');
-            // Create a storage ref to find file again (this needs to stay within the listen function to work FOR SOME F***** REASON)
+            // Create a storage ref to find file again (this needs to stay within the listen function to work FOR SOME REASON)
             var identity = divemailMe.innerHTML;
+            var selectedfolder = folder_options.innerHTML;
             console.log("after event listener divemailMe is " + identity.toString());
             //need to set emailMe as something before using it here IMPORTANT!!
-            var storageRef = firebase.storage().ref("images/" + identity + "/" + file.name); //         images/uid/pic.png
+            var storageRef = firebase.storage().ref("images/" + identity + "/" + selectedfolder + "/" + file.name); //         images/uid/pic.png
 
             // Upload the file
             var task = storageRef.put(file);
@@ -102,7 +120,9 @@
                     uploader.value = percentage;
                 },
                 function error(err) {
-                    window.alert('Error');
+                    var errorCode = error.code;
+                    var errorMessage = error.message;
+                    window.alert('Error: ' + errorMessage);
                 },
                 function complete() {
                     window.alert('Your File was Succesfully Uploaded!')
@@ -113,12 +133,13 @@
 
 
         })
-        //START OF DISPLAY IMAGES
-
-        //i think this just lists all images, now i need to display them or atleast have a place for the list to freakin go            
-
+        //START of selecting forlder function           
+        function folderfunction() {
+            //window.alert("Folder Selected!");
+            var divselectedfolder = document.getElementById("folder_options").value;
+            //document.getElementById("folder_options").innerHTML = selectedfolder;
+            window.alert("Folder Selected: " + divselectedfolder) //check if correct value is recieved
+        }
     </script>
     <script src="index.js"></script>
-</body>
-
-</html>
+</body></html>

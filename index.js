@@ -10,7 +10,7 @@ function login() {
             //setTimeout(function(){ alert("Signing in..."); }, 3000);
             var user = userCredential.user;
             // ...
-            window.location = 'tester.html';
+            window.location = 'landingpage.html';
         })
         .catch((error) => {
             var errorCode = error.code;
@@ -77,6 +77,7 @@ function byebye() {
 }
 
 
+
 function createFolder(varspecial) {
 
     // Create a storage ref to find file again
@@ -135,9 +136,10 @@ function displayImage(row, images, location){
     console.log(url);
 
     let new_html = '';
-    new_html += '<br>';
-    new_html += '<img src="' + url + '"width = "300px" style="float:left">';
-    new_html += '<br>';
+    //you dont need these breaks, it just makes everything have the weird stair effect
+    //new_html += '<br>';
+    new_html += '<img src="' + url + '"height = "300px" style="float: center">';
+    //new_html += '<br>';
     location.innerHTML += new_html;
   })
 }

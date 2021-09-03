@@ -60,7 +60,11 @@ h3 {
 .main-div button, .logout-div button, .logincss-div button {
     background-color: #d7dedc;
     flex-wrap: wrap-reverse;
-    
+}
+
+.testryclass img {
+    padding: 3px;
+    display: inline-flex;
 }
 
 #user_para {
@@ -106,6 +110,15 @@ h1, h2, h4 {
     display: inline-flex;
 }
 
+.visionboard{
+    text-align: center;
+    text-decoration: underline;
+}
+.progressbar {
+    height: 10px;
+    width: 40%;
+}
+
 .upload_group {
     display: flex;
     min-height: 40vh;
@@ -132,4 +145,9 @@ h1, h2, h4 {
 .mainlink {
     ext-decoration: none;
     color: orange;
+}
+.folder_select {
+    text-align: center;
+    background-color: #433e3f;
+    color: aliceblue;
 }
