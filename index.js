@@ -111,15 +111,19 @@ firebase.auth().onAuthStateChanged((user) => {
 
 
 function displayVisionBoard() {
+  //document.getElementById('testry').empty;
+  $( ".testryclass" ).empty();
   var listvariable = document.getElementById('testry');
   //var identity = document.getElementById('divemailMe').value;
   var identity = firebase.auth().currentUser.uid;
+  var selectedfoler = folder_options.innerHTML; 
   console.log("identity is "+ identity.toString());
-  var listRef = storageRef.child('/images/' + identity + '/');
+  var listRef = storageRef.child('/images/' + identity + '/' + selectedfolder + '/');
   console.log ("storageRef.child or listRef is : " + listRef.toString());
         
         //$('#testry').html('');
   var i = 0;
+    
   listRef.listAll().then(function(result) {
       result.items.forEach(function(imageRef){
         console.log("Image reference: " + imageRef.toString());
@@ -134,7 +138,7 @@ function displayVisionBoard() {
 function displayImage(row, images, location){
   images.getDownloadURL().then(function(url) {
     console.log(url);
-
+    
     let new_html = '';
     //you dont need these breaks, it just makes everything have the weird stair effect
     //new_html += '<br>';
