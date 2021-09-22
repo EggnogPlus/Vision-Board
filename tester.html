@@ -25,15 +25,21 @@
 
 
     <div class="folder_select">
-        <label for="cars">Choose a Folder for your Images:</label>
-        <select name="folders" id="folder_options">
+        <label>Choose a Folder for your Images:</label>
+        <input value="folderValue"  placeholder="Type 1, 2, 3 or 4" id="selected_fold">
+        <!--<select name="folders" id="folder_options">
             <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>
             <option value="4">4</option>
-        </select>
+        </select>-->
 
         <input onclick="folderfunction()" type="submit" value="Select This Folder">
+        
+        <div class="folderDetails">
+        <h3>This is your Selected Folder:</h3>
+        <div id="divselectedfolder"></div>
+    </div>
     </div>
 
 
@@ -105,8 +111,9 @@
             //var identity = document.getElementById('uid');
             // Create a storage ref to find file again (this needs to stay within the listen function to work FOR SOME REASON)
             var identity = divemailMe.innerHTML;
-            var selectedfolder = folder_options.innerHTML;
-            console.log(selectedfolder);
+                //var selectedfolder = document.getElementById("folderValue").value;
+            var selectedfolder = divselectedfolder.innerHTML;
+                //console.log(selectedfolder);
             console.log("after event listener divemailMe is " + identity.toString());
             //need to set emailMe as something before using it here IMPORTANT!!
             var storageRef = firebase.storage().ref("images/" + identity + "/" + selectedfolder + "/" + file.name); //         images/uid/pic.png
@@ -138,7 +145,7 @@
         //START of selecting forlder function           
         function folderfunction() {
             //window.alert("Folder Selected!");
-            var divselectedfolder = document.getElementById("folder_options").value;
+            var divselectedfolder = document.getElementById("selected_fold").value; //should be value maybe?
             //document.getElementById("folder_options").innerHTML = selectedfolder;
             window.alert("Folder Selected: " + divselectedfolder) //check if correct value is recieved
         }

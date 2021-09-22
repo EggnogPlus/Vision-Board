@@ -116,7 +116,7 @@ function displayVisionBoard() {
   var listvariable = document.getElementById('testry');
   //var identity = document.getElementById('divemailMe').value;
   var identity = firebase.auth().currentUser.uid;
-  var selectedfoler = folder_options.innerHTML; 
+  var selectedfolder = folder_options.innerHTML; 
   console.log("identity is "+ identity.toString());
   var listRef = storageRef.child('/images/' + identity + '/' + selectedfolder + '/');
   console.log ("storageRef.child or listRef is : " + listRef.toString());
