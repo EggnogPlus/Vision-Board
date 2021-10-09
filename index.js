@@ -33,6 +33,9 @@ function sign_up_page() {
 function upload_page() {
     window.location = 'tester.html';
 }
+function adminlogin() {
+    window.location = 'https://console.firebase.google.com';
+}
 
 function signUpWithEmailPassword() {
 
@@ -75,12 +78,7 @@ function byebye() {
 
 
 }
-function folderfunction() {
-    //window.alert("Folder Selected!");
-    var selectedfolder = document.getElementById("folder_options").value;
-    //document.getElementById("folder_options").innerHTML = selectedfolder;
-    window.alert("Folder Selected: " + selectedfolder) //check if correct value is recieved
-}
+
 
 
 function createFolder(varspecial) {
@@ -116,15 +114,19 @@ firebase.auth().onAuthStateChanged((user) => {
 
 
 function displayVisionBoard() {
+  //document.getElementById('testry').empty;
+  $( ".testryclass" ).empty();
   var listvariable = document.getElementById('testry');
   //var identity = document.getElementById('divemailMe').value;
   var identity = firebase.auth().currentUser.uid;
+  //var selectedfolder = folder_options.innerHTML;
   console.log("identity is "+ identity.toString());
-  var listRef = storageRef.child('/images/' + identity + '/');
+  var listRef = storageRef.child('/images/' + identity + '/'); //would add " + selectedfolder + '/' " if wanted folder selection back
   console.log ("storageRef.child or listRef is : " + listRef.toString());
         
         //$('#testry').html('');
   var i = 0;
+    
   listRef.listAll().then(function(result) {
       result.items.forEach(function(imageRef){
         console.log("Image reference: " + imageRef.toString());
@@ -139,7 +141,7 @@ function displayVisionBoard() {
 function displayImage(row, images, location){
   images.getDownloadURL().then(function(url) {
     console.log(url);
-
+    
     let new_html = '';
     //you dont need these breaks, it just makes everything have the weird stair effect
     //new_html += '<br>';

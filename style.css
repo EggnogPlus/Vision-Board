@@ -3,7 +3,7 @@ input, button {
     
 }
 body {
-    background: #344966
+    background-color: #344966;
 }
 
 h3 {
@@ -34,22 +34,51 @@ h3 {
     padding: 20px;
     margin: 0px auto;
     /*background-color: #f5853f;*/
-    background-color: #f5853f;
+    //background-color: #f5853f;
+    background-image: url(images/ooooooo.gif);
+    background-size: contain;
     border: 1px solid #000;
     outline: none;
     width: 50%;
     font-size: 18px;
     text-align: center;
 }
+.admin-login {
+    padding: 20px;
+    margin: 0px auto;
+    /*background-color: #f5853f;*/
+    /*background-color: #f5853f;*/
+    background-image: url(images/firebase%20loop.gif);
+    background-size: cover;
+    border: 1px solid #000;
+    outline: none;
+    width: 20%;
+    color: black;
+    font-size: 18px;
+    text-align: center;
+    bottom: 0;
+    
+    
+}
+
+.admin-login h3 {
+    padding: 5px;
+}
+
 .logincss-div h3 {
+    color: azure;
+}
+.logincss-div h2 {
     color: azure;
 }
 
 .loogo {
-    text-align: left;
-    background-color: #344966;
+    text-align: center;
+
     height: 105px;
-    padding: 10px
+    padding: 1px;
+    /background-image: url(images/logo%20copy.jpg);
+    background-size:contain; 
 }
 .loogo img {
     height: 105px;
@@ -82,9 +111,12 @@ h3 {
     top: 0;
     width: 200px;
     padding: 0px;
-    background-color: #d7dedc;
+    //background-color: #d7dedc;
     //margin-left: 40%;
-}
+    background-image: url(images/loop%206.gif);
+    background-position: center;
+    background-size: cover;
+} 
 
 h1, h2, h4 {
     text-align: center;
@@ -129,6 +161,7 @@ h1, h2, h4 {
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    
 }
 
 .userdetails {
@@ -148,6 +181,7 @@ h1, h2, h4 {
 }
 .folder_select {
     text-align: center;
-    background-color: #433e3f;
-    color: aliceblue;
+    background-image: url(images/loop%203.gif);
+    color: #fff;
 }
+
