@@ -15,9 +15,12 @@
     </div>
 
 
-
     <div class="upload_group">
-
+        <div class="popup">
+  <span class="popuptext" id="myPopup">
+      File Succesfully Uploaded!
+            </span>
+</div>
         <progress value="0" max="100" id="uploader" class="progressbar">0%</progress>
         <input type="file" value="upload" id="fileButton">
 
@@ -35,11 +38,11 @@
         </select>-->
         <h2>To refresh your Image Board, please press the "List all images" again.</h2>
         <!--<input onclick="folderfunction()" type="submit" value="Select This Folder">-->
-        
+
         <div class="folderDetails">
-        <!--<h3>This is your Selected Folder:</h3>
+            <!--<h3>This is your Selected Folder:</h3>
         <div id="divselectedfolder"></div>-->
-    </div>
+        </div>
     </div>
 
 
@@ -89,7 +92,9 @@
         // this is to get elements
         var uploader = document.getElementById('uploader');
         var fileButton = document.getElementById('fileButton');
-        var emailMe = document.getElementById('uid')
+        var emailMe = document.getElementById('uid');
+        //var number_files = document.getElementById('number');
+        //number_files = 0;
         // [START storage_list_all]
         //document.getElementById("emailMe").innerHTML = uid;
         //var identity = divemailMe.innerHTML;
@@ -111,22 +116,24 @@
             //var identity = document.getElementById('uid');
             // Create a storage ref to find file again (this needs to stay within the listen function to work FOR SOME REASON)
             var identity = divemailMe.innerHTML;
-                //var selectedfolder = document.getElementById("folderValue").value;
+            //var selectedfolder = document.getElementById("folderValue").value;
             //var selectedfolder = divselectedfolder.innerHTML;
-                //console.log(selectedfolder);
+            //console.log(selectedfolder);
             console.log("after event listener divemailMe is " + identity.toString());
             //need to set emailMe as something before using it here IMPORTANT!!
             var storageRef = firebase.storage().ref("images/" + identity + "/" + file.name); //         images/uid/pic.png
 
             // Upload the file
             var task = storageRef.put(file);
-
+            
             // Update the progress bar
             task.on('state_changed',
 
                 function progress(snapshot) {
                     var percentage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
                     uploader.value = percentage;
+                     
+                
                 },
                 function error(err) {
                     var errorCode = error.code;
@@ -134,14 +141,17 @@
                     window.alert('Error: ' + errorMessage);
                 },
                 function complete() {
-                    window.alert('Your File was Succesfully Uploaded!')
+                    var popup = document.getElementById("myPopup");
+                    popup.classList.toggle("show");
+                    setTimeout( function() {popup.classList.toggle("hide");}, 2000);
+                    
+                });
 
-                }
+            }
 
-            );
+        );
 
 
-        })
         //START of selecting forlder function           
         function folderfunction() {
             //window.alert("Folder Selected!");
